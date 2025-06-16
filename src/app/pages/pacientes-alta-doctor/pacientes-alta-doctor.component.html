@@ -1,0 +1,30 @@
+<div class="pantalla-bg text-white p-4">
+  <div class="container">
+    <h2 class="text-center mb-4">🟢 Pacientes Dados de Alta</h2>
+
+    <div *ngIf="pacientes.length === 0" class="text-center">
+      <p>No hay pacientes dados de alta por usted.</p>
+    </div>
+
+    <div *ngIf="pacientes.length > 0" class="table-responsive">
+      <table class="table table-dark table-bordered text-center">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of pacientes">
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.cedula }}</td>
+            <td>{{ p.telefono }}</td>
+            <td>{{ p.direccion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -72,5 +72,15 @@ export class ListaPacientesComponent implements OnInit {
     if (!id) return;
     this.router.navigate(['/historiales', id]);
   }
-  
+
+  darAlta(id: string): void {
+    this.pacienteService.darAlta(id).subscribe({
+      next: () => {
+        this.pacientes = this.pacientes.map((p) =>
+          p.id === id ? { ...p, alta: true } : p
+        );
+      },
+      error: () => alert('Error al dar de alta'),
+    });
+  }
 }

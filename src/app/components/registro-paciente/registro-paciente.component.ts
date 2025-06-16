@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
@@ -14,7 +15,7 @@ import Swal from 'sweetalert2';
   templateUrl: './registro-paciente.component.html',
   styleUrl: './registro-paciente.component.css',
 })
-export class RegistroPacienteComponent {
+export class RegistroPacienteComponent implements OnInit {
   paciente: Paciente = {
     nombre: '',
     edad: 0,
@@ -23,7 +24,15 @@ export class RegistroPacienteComponent {
     direccion: '',
   };
 
-  constructor(private pacienteService: PacienteService) {}
+  constructor(private pacienteService: PacienteService, private router: Router) {}
+
+  ngOnInit(): void {
+  const rol = JSON.parse(localStorage.getItem('usuario') || '{}').rol;
+  if (rol !== 'SECRETARIA') {
+    alert('Acceso denegado. Solo la secretaria puede registrar pacientes.');
+    this.router.navigate(['/']);
+  }
+}
 
   guardarPaciente() {
     this.pacienteService.addPaciente(this.paciente).subscribe(() => {

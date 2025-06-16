@@ -10,7 +10,10 @@
 
       <div class="mb-3">
         <label for="doctor">Doctor Asignado</label>
-        <input type="text" class="form-control" [(ngModel)]="cita.doctor" name="doctor" required />
+        <select class="form-select" [(ngModel)]="cita.doctor" name="doctor" required>
+          <option value="" disabled selected>Seleccione un doctor</option>
+          <option *ngFor="let doc of listaDoctores" [value]="doc.nombre">{{ doc.nombre }}</option>
+        </select>
       </div>
 
       <div class="mb-3">

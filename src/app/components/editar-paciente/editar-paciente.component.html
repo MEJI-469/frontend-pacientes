@@ -3,11 +3,8 @@
     <div class="col-md-10">
       <h3>Editar Paciente</h3>
       <form (ngSubmit)="actualizarPaciente()" #form="ngForm" novalidate>
-        <!-- Usa las mismas filas dobles que el formulario de registrar -->
-        <!-- Aquí puedes reutilizar todo el contenido HTML que ya tienes para el formulario -->
-        <!-- Solo cambia el botón final -->
-
-        <!-- Ejemplo de un solo campo -->
+        
+        <!-- Fila: Nombre y Edad -->
         <div class="row">
           <div class="form-group col-md-6 mb-3">
             <label>Nombre</label>
@@ -22,8 +19,33 @@
           </div>
         </div>
 
-        <!-- ... Resto del formulario como en registro ... -->
+        <!-- Fila: Cédula y Teléfono -->
+        <div class="row">
+          <div class="form-group col-md-6 mb-3">
+            <label>Cédula</label>
+            <input type="text" class="form-control" required pattern="^[0-9]{10}$"
+                   [(ngModel)]="paciente.cedula" name="cedula" #cedula="ngModel">
+            <div class="text-danger" *ngIf="cedula.errors?.['required'] && cedula.touched">Cédula requerida</div>
+            <div class="text-danger" *ngIf="cedula.errors?.['pattern'] && cedula.touched">Cédula inválida (10 dígitos)</div>
+          </div>
 
+          <div class="form-group col-md-6 mb-3">
+            <label>Teléfono</label>
+            <input type="text" class="form-control" required pattern="^[0-9]{7,10}$"
+                   [(ngModel)]="paciente.telefono" name="telefono" #telefono="ngModel">
+            <div class="text-danger" *ngIf="telefono.errors?.['required'] && telefono.touched">Teléfono requerido</div>
+            <div class="text-danger" *ngIf="telefono.errors?.['pattern'] && telefono.touched">Teléfono inválido</div>
+          </div>
+        </div>
+
+        <!-- Fila: Dirección -->
+        <div class="form-group mb-3">
+          <label>Dirección</label>
+          <input type="text" class="form-control" required [(ngModel)]="paciente.direccion" name="direccion" #direccion="ngModel">
+          <div class="text-danger" *ngIf="direccion.invalid && direccion.touched">Dirección requerida</div>
+        </div>
+
+        <!-- Botón -->
         <div class="text-center">
           <button class="btn btn-primary px-5" [disabled]="form.invalid">Actualizar</button>
         </div>

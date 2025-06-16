@@ -28,6 +28,10 @@ export class PacienteService {
     return this.http.get<Paciente>(`${this.baseUrl}/${id}`);
   }
 
+  getPacientePorCedula(cedula: string): Observable<Paciente> {
+    return this.http.get<Paciente>(`${this.baseUrl}/cedula/${cedula}`);
+  }
+
   actualizarPaciente(id: string, paciente: Paciente): Observable<Paciente> {
     return this.http.put<Paciente>(`${this.baseUrl}/${id}`, paciente);
   }
@@ -39,4 +43,13 @@ export class PacienteService {
   agregarHistorial(id: string, historial: HistorialMedico): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/${id}/historial`, historial);
   }
+
+  darAlta(id: string): Observable<Paciente> {
+    return this.http.put<Paciente>(`${this.baseUrl}/${id}/alta`, {});
+  }
+
+  obtenerPacientesPorDoctor(doctor: string): Observable<Paciente[]> {
+  return this.http.get<Paciente[]>(`${this.baseUrl}?doctor=${doctor}`);
+}
+
 }

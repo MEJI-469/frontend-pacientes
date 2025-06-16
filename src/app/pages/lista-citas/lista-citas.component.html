@@ -1,0 +1,47 @@
+<div class="pantalla-bg text-white p-4">
+    <div class="container">
+        <h2 class="mb-4 text-center">📋 Lista de Citas Agendadas</h2>
+
+        <div *ngIf="citas.length === 0" class="text-center">
+            <p>No hay citas agendadas.</p>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input class="form-control" [(ngModel)]="filtroCedula" placeholder="Filtrar por cédula"
+                    (input)="aplicarFiltro()">
+            </div>
+            <div class="col-md-6 mt-2 mt-md-0">
+                <input type="date" class="form-control" [(ngModel)]="filtroFecha" (change)="aplicarFiltro()">
+            </div>
+        </div>
+
+
+        <div *ngIf="citas.length > 0" class="table-responsive">
+            <table class="table table-dark table-striped table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Doctor</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Motivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cita of citasFiltradas">
+                        <td>{{ cita.cedula }}</td>
+                        <td>{{ cita.doctor }}</td>
+                        <td>{{ cita.fecha }}</td>
+                        <td>{{ cita.hora }}</td>
+                        <td>{{ cita.motivo }}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(cita.id!)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

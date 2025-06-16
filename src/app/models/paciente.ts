@@ -10,5 +10,6 @@ export interface Paciente {
   cedula: string;
   telefono: string;
   direccion: string;
-  historiales?: HistorialMedico[];
+  historialMedico?: string;
+  alta?: boolean;
 }

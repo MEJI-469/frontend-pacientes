@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Cita {
+  id?: string; // El ID puede ser opcional si se genera en el backend
   cedula: string;
   doctor: string;
   fecha: string;
@@ -11,7 +12,7 @@ export interface Cita {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CitaService {
   private url = 'http://localhost:8080/api/citas';
@@ -20,5 +21,13 @@ export class CitaService {
 
   guardarCita(cita: Cita): Observable<Cita> {
     return this.http.post<Cita>(this.url, cita);
+  }
+
+  obtenerCitas(): Observable<Cita[]> {
+    return this.http.get<Cita[]>(this.url);
+  }
+
+  eliminarCita(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 }

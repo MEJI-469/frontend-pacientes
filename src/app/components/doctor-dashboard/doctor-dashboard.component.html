@@ -1,4 +1,32 @@
-<div class="pantalla-bg text-white text-center">
-  <h2 class="mb-4">👨‍⚕️ Bienvenido Doctor</h2>
-  <p>Aquí podrás ver tus pacientes, agregar historiales y dar altas.</p>
+<div class="pantalla-bg text-white">
+  <div class="container">
+    <h2 class="mb-4 text-center">👨‍⚕️ Panel del Doctor</h2>
+    <p class="text-center mb-5 parrafo">Administra tus pacientes y registra sus avances médicos.</p>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-5">
+        <div class="card bg-dark text-white shadow p-3">
+          <h5 class="card-title">📋 Mis Citas</h5>
+          <p class="card-text">Consulta tus citas médicas agendadas.</p>
+          <a routerLink="/mis-citas" class="btn btn-light">Ver Citas</a>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="card bg-dark text-white shadow p-3">
+          <h5 class="card-title">📝 Pacientes Dados de Alta</h5>
+          <p class="card-text">Visualiza los pacientes que ya fueron dados de alta.</p>
+          <a routerLink="/mis-altas" class="btn btn-light">Ver Altas</a>
+        </div>
+      </div>
+
+      <!--<div class="col-md-5">
+        <div class="card bg-dark text-white shadow p-3">
+          <h5 class="card-title">📄 Historiales Médicos</h5>
+          <p class="card-text">Consulta y agrega nuevos historiales a tus pacientes.</p>
+          <a routerLink="/lista" class="btn btn-light">Ver Pacientes</a>
+        </div>
+      </div>-->
+    </div>
+  </div>
 </div>
