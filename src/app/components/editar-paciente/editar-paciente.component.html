@@ -1,0 +1,33 @@
+<div class="container-fluid mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h3>Editar Paciente</h3>
+      <form (ngSubmit)="actualizarPaciente()" #form="ngForm" novalidate>
+        <!-- Usa las mismas filas dobles que el formulario de registrar -->
+        <!-- Aquí puedes reutilizar todo el contenido HTML que ya tienes para el formulario -->
+        <!-- Solo cambia el botón final -->
+
+        <!-- Ejemplo de un solo campo -->
+        <div class="row">
+          <div class="form-group col-md-6 mb-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" required [(ngModel)]="paciente.nombre" name="nombre" #nombre="ngModel">
+            <div class="text-danger" *ngIf="nombre.invalid && nombre.touched">Nombre requerido</div>
+          </div>
+
+          <div class="form-group col-md-6 mb-3">
+            <label>Edad</label>
+            <input type="number" class="form-control" required min="0" [(ngModel)]="paciente.edad" name="edad" #edad="ngModel">
+            <div class="text-danger" *ngIf="edad.invalid && edad.touched">Edad requerida</div>
+          </div>
+        </div>
+
+        <!-- ... Resto del formulario como en registro ... -->
+
+        <div class="text-center">
+          <button class="btn btn-primary px-5" [disabled]="form.invalid">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

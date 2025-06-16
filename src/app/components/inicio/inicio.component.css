@@ -1,0 +1,56 @@
+.inicio-bg {
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(10, 10, 10, 0.85)),
+              url('https://www.transparenttextures.com/patterns/black-felt.png');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #6c63ff, #30cfd0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-outline-light {
+  border: 2px solid white;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* --- Fade in inicial --- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inicio-bg .text-center {
+  animation: fadeInUp 1.2s ease-out;
+}
+
+/* --- Botones: efecto hover moderno --- */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+/* --- Transiciones suaves para encabezados y párrafos --- */
+h1, p {
+  transition: color 0.3s ease, transform 0.3s ease;
+}

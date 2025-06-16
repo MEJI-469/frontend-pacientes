@@ -1,0 +1,81 @@
+<div class="container-fluid mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Registro</li>
+        </ol>
+      </nav>
+      <h3>Registrar Paciente</h3>
+      <form (ngSubmit)="guardarPaciente()" #form="ngForm" novalidate>
+
+        <div class="card mb-3">
+          <div class="card-header bg-light fw-bold">Datos personales</div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Nombre -->
+              <div class="form-group col-md-6 mb-3">
+                <label>Nombre</label>
+                <input type="text" class="form-control" required [(ngModel)]="paciente.nombre" name="nombre"
+                  #nombre="ngModel">
+                <div class="text-danger" *ngIf="nombre.invalid && nombre.touched">Nombre requerido</div>
+              </div>
+
+              <!-- Edad -->
+              <div class="form-group col-md-6 mb-3">
+                <label>Edad</label>
+                <input type="number" class="form-control" required min="0" [(ngModel)]="paciente.edad" name="edad"
+                  #edad="ngModel">
+                <div class="text-danger" *ngIf="edad.invalid && edad.touched">Edad requerida (mayor o igual a 0)</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Cédula -->
+              <div class="form-group col-md-6 mb-3">
+                <label>Cédula</label>
+                <input type="text" class="form-control" required pattern="^[0-9]{10}$" [(ngModel)]="paciente.cedula"
+                  name="cedula" #cedula="ngModel">
+                <div class="text-danger" *ngIf="cedula.errors?.['required'] && cedula.touched">Cédula requerida</div>
+                <div class="text-danger" *ngIf="cedula.errors?.['pattern'] && cedula.touched">Cédula inválida (10
+                  dígitos)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header bg-light fw-bold">Contacto</div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Teléfono -->
+              <div class="form-group col-md-6 mb-3">
+                <label>Teléfono</label>
+                <input type="text" class="form-control" required pattern="^[0-9]{7,10}$" [(ngModel)]="paciente.telefono"
+                  name="telefono" #telefono="ngModel">
+                <div class="text-danger" *ngIf="telefono.errors?.['required'] && telefono.touched">Teléfono requerido
+                </div>
+                <div class="text-danger" *ngIf="telefono.errors?.['pattern'] && telefono.touched">Teléfono inválido
+                </div>
+              </div>
+              <!-- Dirección -->
+              <div class="form-group col-md-6 mb-3">
+                <label>Dirección</label>
+                <input type="text" class="form-control" required [(ngModel)]="paciente.direccion" name="direccion"
+                  #direccion="ngModel">
+                <div class="text-danger" *ngIf="direccion.invalid && direccion.touched">Dirección requerida</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-success px-5" [disabled]="form.invalid">Guardar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

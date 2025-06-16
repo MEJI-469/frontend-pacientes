@@ -1,0 +1,50 @@
+<div class="pantalla-bg">
+  <div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lista de Pacientes</li>
+          </ol>
+        </nav>
+        <h3>Lista de Pacientes</h3>
+        <div class="mb-3">
+          <input type="text" class="form-control" [(ngModel)]="busqueda" (input)="filtrarPacientes()"
+            placeholder="Buscar por nombre o cédula">
+        </div>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cédula</th>
+              <th>Edad</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of pacientesFiltrados">
+              <td>{{ p.nombre }}</td>
+              <td>{{ p.cedula }}</td>
+              <td>{{ p.edad }}</td>
+              <td>{{ p.telefono }}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-warning btn-sm me-1" (click)="editarPaciente(p.id)">Editar</button>
+                  <button class="btn btn-info btn-sm me-1" (click)="verHistorial(p.id)">Ver Historial</button>
+                  <button class="btn btn-danger btn-sm" (click)="confirmarEliminar(p.id)">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <tr *ngIf="pacientesFiltrados.length === 0">
+          <td colspan="5" class="text-center text-muted">No se encontraron pacientes.</td>
+        </tr>
+      </div>
+    </div>
+  </div>  
+</div>

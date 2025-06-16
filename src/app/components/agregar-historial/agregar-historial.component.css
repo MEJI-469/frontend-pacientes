@@ -1,0 +1,8 @@
+.breadcrumb {
+  background-color: transparent;
+  font-size: 0.95rem;
+}
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
