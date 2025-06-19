@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
 import { Paciente } from '../../models/paciente';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import Swal from 'sweetalert2';
 
@@ -22,7 +23,8 @@ export class ListaPacientesComponent implements OnInit {
 
   constructor(
     private pacienteService: PacienteService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -82,5 +84,9 @@ export class ListaPacientesComponent implements OnInit {
       },
       error: () => alert('Error al dar de alta'),
     });
+  }
+
+  volver(): void {
+    this.location.back();
   }
 }

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
 import { Paciente } from '../../models/paciente';
+import { Location } from '@angular/common';
 
 import Swal from 'sweetalert2';
 
@@ -24,7 +25,7 @@ export class RegistroPacienteComponent implements OnInit {
     direccion: '',
   };
 
-  constructor(private pacienteService: PacienteService, private router: Router) {}
+  constructor(private pacienteService: PacienteService, private router: Router,private location: Location) {}
 
   ngOnInit(): void {
   const rol = JSON.parse(localStorage.getItem('usuario') || '{}').rol;
@@ -52,5 +53,8 @@ export class RegistroPacienteComponent implements OnInit {
         direccion: '',
       };
     });
+  }
+  volver(): void {
+    this.location.back() 
   }
 }

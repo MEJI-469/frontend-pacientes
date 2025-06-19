@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, RouterOutlet],
+  standalone: true,
+  imports: [CommonModule,RouterModule, RouterOutlet],
   animations: [
     trigger('routeAnimations', [
       transition('* <=> *', [
@@ -18,7 +20,22 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class AppComponent {
   title = 'frontend-pacientes';
+
+  constructor(private router: Router) {}
+
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];
   }
+  get mostrarBotonCerrarSesion(): boolean {
+    const ruta = this.router.url;
+    const usuario = localStorage.getItem('usuario');
+    return usuario !== null && ruta !== '/login' && ruta !== '/';
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }
+
+

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
 import { HistorialMedico } from '../../models/paciente';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ver-historiales',
@@ -19,7 +20,8 @@ export class VerHistorialesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private pacienteService: PacienteService
+    private pacienteService: PacienteService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,6 @@ export class VerHistorialesComponent implements OnInit {
   }
 
   volver(): void {
-    this.router.navigate(['/lista']); // ajusta según el path real de tu lista de pacientes
+    this.location.back()//this.router.navigate(['/lista']); // ajusta según el path real de tu lista de pacientes
   }
 }

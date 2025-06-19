@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
 import { HistorialMedico } from '../../models/paciente';
 import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-agregar-historial',
@@ -22,10 +23,10 @@ export class AgregarHistorialComponent {
     fecha: ''
   };
 
-  constructor(private route: ActivatedRoute, private router: Router, private pacienteService: PacienteService) {
+  constructor(private route: ActivatedRoute, private router: Router, private pacienteService: PacienteService,private location: Location) {
     this.id = this.route.snapshot.paramMap.get('id') || '';
   }
-
+  
   guardar(): void {
     if (!this.nuevoHistorial.descripcion || !this.nuevoHistorial.fecha) return;
 
@@ -43,7 +44,7 @@ export class AgregarHistorialComponent {
   }
 
   volver(): void {
-  this.router.navigate(['/historiales', this.id]);
+  this.location.back();//this.router.navigate(['/historiales', this.id]);
 }
 
 }

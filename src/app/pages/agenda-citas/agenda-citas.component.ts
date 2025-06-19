@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CitaService, Cita } from '../../services/cita.service';
 import { UsuarioService, Usuario } from '../../services/usuario.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-agenda-citas',
@@ -21,7 +22,7 @@ export class AgendaCitasComponent implements OnInit {
     motivo: '',
   };
 
-  constructor(private citaService: CitaService, private router: Router, private usuarioService: UsuarioService) {}
+  constructor(private citaService: CitaService, private router: Router, private usuarioService: UsuarioService,private location: Location) {}
 
   listaDoctores: Usuario[] = [];
 
@@ -41,5 +42,9 @@ export class AgendaCitasComponent implements OnInit {
         alert('❌ Ocurrió un error al guardar la cita');
       },
     });
+  }
+
+  volver():void{
+    this.location.back();
   }
 }

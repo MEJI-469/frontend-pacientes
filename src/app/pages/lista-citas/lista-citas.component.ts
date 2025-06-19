@@ -3,6 +3,7 @@ import { CitaService, Cita } from '../../services/cita.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lista-citas',
@@ -13,7 +14,7 @@ import { RouterModule } from '@angular/router';
 export class ListaCitasComponent {
   citas: Cita[] = [];
 
-  constructor(private citaService: CitaService) {}
+  constructor(private citaService: CitaService, private location: Location) {}
   
   filtroCedula: string = '';
   filtroFecha: string = '';
@@ -49,5 +50,8 @@ export class ListaCitasComponent {
         error: () => alert('Error al eliminar la cita'),
       });
     }
+  }
+  volver():void{
+    this.location.back();
   }
 }

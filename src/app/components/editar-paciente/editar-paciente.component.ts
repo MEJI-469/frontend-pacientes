@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
 import { Paciente } from '../../models/paciente';
 import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-editar-paciente',
@@ -28,7 +29,8 @@ export class EditarPacienteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private pacienteService: PacienteService
+    private pacienteService: PacienteService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -50,5 +52,9 @@ export class EditarPacienteComponent implements OnInit {
       });
       this.router.navigate(['/lista']);
     });
+  }
+
+  volver(): void {
+    this.location.back();
   }
 }

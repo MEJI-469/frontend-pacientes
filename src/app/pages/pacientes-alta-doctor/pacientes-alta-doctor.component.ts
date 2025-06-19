@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PacienteService} from '../../services/paciente.service';
 import { Paciente } from '../../models/paciente';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pacientes-alta-doctor',
@@ -13,7 +14,7 @@ export class PacientesAltaDoctorComponent implements OnInit {
   pacientes: Paciente[] = [];
   doctor: string = '';
 
-  constructor(private pacienteService: PacienteService) {}
+  constructor(private pacienteService: PacienteService, private location: Location) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('usuario') || '{}');
@@ -22,5 +23,8 @@ export class PacientesAltaDoctorComponent implements OnInit {
     this.pacienteService.obtenerPacientesPorDoctor(this.doctor).subscribe(pacientes => {
       this.pacientes = pacientes.filter(p => p.alta);
     });
+  }
+  volver():void{
+    this.location.back();
   }
 }

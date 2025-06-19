@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Paciente } from '../../models/paciente';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-doctor-citas',
@@ -23,7 +24,8 @@ export class DoctorCitasComponent implements OnInit {
   constructor(
     private citaService: CitaService,
     private pacienteService: PacienteService,
-    private router: Router
+    private router: Router,
+    private location:Location
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,10 @@ export class DoctorCitasComponent implements OnInit {
         });
       }
     });
+  }
+
+  volver(): void{
+    this.location.back();
   }
 
   /*darAltaa(id: string): void {

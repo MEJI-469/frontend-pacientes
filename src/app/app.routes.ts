@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -22,18 +23,18 @@ export const routes: Routes = [
   
   // secretaria
   { path: 'secretaria', component: SecretariaDashboardComponent },
-  { path: 'registro', component: RegistroPacienteComponent, data: { animation: 'RegistroPage' } },
-  { path: 'lista', component: ListaPacientesComponent, data: { animation: 'ListaPage' }  },
-  { path: 'editar/:id', component: EditarPacienteComponent, data: { animation: 'EditarPage' } },
-  { path: 'citas', component: AgendaCitasComponent },
-  { path: 'citas-agendadas', component: ListaCitasComponent },
+  { path: 'registro', component: RegistroPacienteComponent, data: { animation: 'RegistroPage' },canActivate: [AuthGuard] },
+  { path: 'lista', component: ListaPacientesComponent, data: { animation: 'ListaPage' } ,canActivate: [AuthGuard] },
+  { path: 'editar/:id', component: EditarPacienteComponent, data: { animation: 'EditarPage' },canActivate: [AuthGuard] },
+  { path: 'citas', component: AgendaCitasComponent,canActivate: [AuthGuard] },
+  { path: 'citas-agendadas', component: ListaCitasComponent,canActivate: [AuthGuard] },
 
   // doctor
-  { path: 'doctor', component: DoctorDashboardComponent },
-  { path: 'mis-citas', component: DoctorCitasComponent },
-  { path: 'mis-altas', component: PacientesAltaDoctorComponent },
-  { path: 'historiales/:id', component: VerHistorialesComponent, data: { animation: 'VerHistorialPage' } },
-  { path: 'historiales/:id/agregar', component: AgregarHistorialComponent, data: { animation: 'AgregarHistorialPage' } },
+  { path: 'doctor', component: DoctorDashboardComponent,canActivate: [AuthGuard] },
+  { path: 'mis-citas', component: DoctorCitasComponent ,canActivate: [AuthGuard]},
+  { path: 'mis-altas', component: PacientesAltaDoctorComponent,canActivate: [AuthGuard] },
+  { path: 'historiales/:id', component: VerHistorialesComponent, data: { animation: 'VerHistorialPage' } ,canActivate: [AuthGuard]},
+  { path: 'historiales/:id/agregar', component: AgregarHistorialComponent, data: { animation: 'AgregarHistorialPage' },canActivate: [AuthGuard] },
 
   // Ruta por defecto
   { path: '**', redirectTo: '' }
